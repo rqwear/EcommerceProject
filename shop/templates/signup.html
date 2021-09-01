@@ -1,0 +1,45 @@
+{%  extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Creat New Account
+{% endblock %}
+
+{% block content %}
+    <div>
+        {% if not for.is_valid %}
+            <div>
+            <br>
+            <h1 class="product_title text-center">Create a new account</h1>
+            <br>
+            <div class="col-9 col-sm-9 col-md-6 col-lg-5 mx-auto bg-light">
+                <br>
+                <p>Please input</p>
+                <form action="post">
+                    {% csrf_token %}
+                    <p>{{ form }}</p>
+                    <button class="btn btn-secondary" type="submit" name="button">SingUp</button>
+                </form>
+            </div>
+
+
+            </div>
+        {% else %}
+            <div class="mx-auto">
+            <br>
+            <h1 class="product_title text-center">Your account has been created</h1>
+            </div>
+            <div>
+                <p>Your acc created and ready to use</p>
+                <br>
+                <a href="{% url 'home' %}">Continue shopping</a>
+            </div>
+        {% endif %}
+    </div>
+
+
+
+
+
+{% endblock %}
