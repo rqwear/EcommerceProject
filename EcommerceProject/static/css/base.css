@@ -21,3 +21,7 @@ body {
     color: red;
     font-width: bold;
 }
+
+.costom_div {
+    margin-bottom: 20px !important;
+}

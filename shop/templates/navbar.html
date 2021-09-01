@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-light bg-dark">
 
-        <a href="#" class="navbar-brand"><i class="material-icons text-success md-36">storefront</i> </a>
+        <a href="{% url 'home' %}" class="navbar-brand"><i class="material-icons text-success md-36">storefront</i> </a>
         <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
             <span class="navbar-toggler-icon"></span></button>
         <div id="navbar" class="collapse navbar-collapse justify-content-between">
@@ -17,6 +17,19 @@
             </li>
             <li class="nav-item"><a class="nav-link text-light text-uppercase font-weight-bold" href="">Contacts</a> </li>
             <li class="nav-item"><a class="nav-link text-light text-uppercase font-weight-bold" href="">Product</a> </li>
+            {% if request.user.is_authenticated and request.user.first_name %}
+            <li class="nav-item"><span class="nav-link text-light text-uppercase font-weight-bold" >
+                Welcome {{ request.user.first_name }}!<span class="material-icons">account_circle</span></span></li>
+
+                <li class="nav-item"><a class="nav-link text-light text-uppercase font-weight-bold" href="{% url 'signout' %}">
+                Sing out!<span class="material-icons">logout</span></a><</li>
+
+            {% else %}
+                <li class="nav-item"><a class="nav-link text-light text-uppercase font-weight-bold" href="{% url 'signup' %}">
+                Sing up!<span class="material-icons">add</span></a><</li>
+                <li class="nav-item"><a class="nav-link text-light text-uppercase font-weight-bold" href="{% url 'login' %}">
+                Log in!<span class="material-icons">login</span></a><</li>
+            {% endif %}
             <li class="nav-item"><a class="nav-link text-light text-uppercase font-weight-bold" href="{% url 'cart_detail' %}">
                 <span class="material-icons cart-icon">add_shopping_cart</span>({{ item_count }})</a> </li>
         </ul>
